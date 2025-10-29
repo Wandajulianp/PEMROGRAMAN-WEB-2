@@ -77,7 +77,6 @@ button {
     border-radius: 6px;
     cursor: pointer;
     font-weight: 500;
-    float: right;
     margin-top: 15px;
 }
 button:hover {
@@ -90,14 +89,21 @@ button:hover {
     margin-bottom: 20px;
     border-radius: 8px;
 }
-a {
-    display: inline-block;
-    margin-top: 20px;
-    color: #1a73e8;
-    text-decoration: none;
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-a:hover {
-    text-decoration: underline;
+a.view-link {
+    background-color: #34a853;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+}
+a.view-link:hover {
+    background-color: #2b8a42;
 }
 </style>
 </head>
@@ -107,7 +113,7 @@ a:hover {
 
     <?php if (!empty($success)): ?>
         <div class="success-box">
-            ✅ Data berhasil disimpan! <a href="lihat_data.php">Lihat Data</a>
+            ✅ Data berhasil disimpan!
         </div>
     <?php endif; ?>
 
@@ -145,7 +151,10 @@ a:hover {
         <label>Sekolah Asal:</label>
         <input type="text" name="school_attended">
 
-        <button type="submit">Kirim</button>
+        <div class="action-buttons">
+            <button type="submit">Kirim</button>
+            <a href="lihat_data.php" class="view-link">Lihat Data</a>
+        </div>
     </form>
 </div>
 </body>
