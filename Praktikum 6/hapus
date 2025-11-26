@@ -1,0 +1,23 @@
+<?php
+include 'koneksi.php';
+
+$id = $_GET['id'];
+
+// ambil nama foto
+$data = mysqli_query($koneksi, "SELECT foto FROM pendaftar WHERE id='$id'");
+$d = mysqli_fetch_assoc($data);
+$foto = $d['foto'];
+
+// hapus foto dari folder
+if(file_exists("uploads/".$foto)) {
+    unlink("uploads/".$foto);
+}
+
+// hapus data dari database
+mysqli_query($koneksi, "DELETE FROM pendaftar WHERE id='$id'");
+
+echo "<script>
+        alert('Data berhasil dihapus!');
+        window.location='tampil_foto.php';
+      </script>";
+?>
