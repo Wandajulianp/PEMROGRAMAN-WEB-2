@@ -1,0 +1,51 @@
+<?php
+include 'koneksi.php';
+
+$data = mysqli_query($koneksi, "SELECT * FROM pendaftar ORDER BY id DESC");
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Pendaftar</title>
+</head>
+<body>
+
+<h2>Data Pendaftar</h2>
+
+<!-- PERBAIKAN DI SINI -->
+<a href="tambah.php">+ Tambah Pendaftar</a>
+<br><br>
+
+<table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+        <th>ID</th>
+        <th>Nama</th>
+        <th>Email</th>
+        <th>Tanggal Lahir</th>
+        <th>Alamat</th>
+        <th>Program</th>
+        <th>Foto</th>
+        <th>Aksi</th>
+    </tr>
+
+    <?php while ($d = mysqli_fetch_array($data)) { ?>
+    <tr>
+        <td><?= $d['id'] ?></td>
+        <td><?= $d['nama_lengkap'] ?></td>
+        <td><?= $d['email'] ?></td>
+        <td><?= $d['tanggal_lahir'] ?></td>
+        <td><?= $d['alamat'] ?></td>
+        <td><?= $d['program_dipilih'] ?></td>
+        <td><img src="uploads/<?= $d['foto'] ?>" width="100"></td>
+        <td>
+            <a href="edit.php?id=<?= $d['id'] ?>">Edit</a> |
+            <a href="hapus.php?id=<?= $d['id'] ?>" onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
+        </td>
+    </tr>
+    <?php } ?>
+
+</table>
+
+</body>
+</html>
